@@ -180,11 +180,9 @@ class TransaksiController extends BaseController
         $status = $this->request->getPost('status'); 
          
         if ($this->transaction->updateStatus($id, $status)) { 
-            return redirect()->back()->with('success', 'Status transaksi berhasil 
-diperbarui.'); 
+            return redirect()->back()->with('success', 'Status transaksi berhasil diperbarui.'); 
         } else { 
-            return redirect()->back()->with('error', 'Gagal memperbarui status 
-transaksi.'); 
+            return redirect()->back()->with('error', 'Gagal memperbarui status transaksi.'); 
         } 
     }
 }

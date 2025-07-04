@@ -11,6 +11,9 @@ $routes->post('login', 'AuthController::login');
 $routes->get('logout', 'AuthController::logout');
 
 $routes->get('/', 'Home::index', ['filter' => 'auth']);
+$routes->post('penjualan/updateStatus/(:any)', 
+'TransaksiController::updateStatus/$1', ['filter' => 'auth']); 
+$routes->get('penjualan', 'Home::penjualan', ['filter' => 'auth']); 
 
 $routes->group('produk', ['filter' => 'auth'], function ($routes) { 
     $routes->get('', 'ProdukController::index');
@@ -39,7 +42,3 @@ $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);
-
-$routes->post('penjualan/updateStatus/(:any)', 
-'TransaksiController::updateStatus/$1', ['filter' => 'auth']); 
-$routes->get('penjualan', 'Home::penjualan', ['filter' => 'auth']); 
