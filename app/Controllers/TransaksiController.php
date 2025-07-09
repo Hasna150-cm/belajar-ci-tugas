@@ -185,4 +185,33 @@ class TransaksiController extends BaseController
             return redirect()->back()->with('error', 'Gagal memperbarui status transaksi.'); 
         } 
     }
+
+        public function uploadBukti($id)
+    {
+        $validationRule = [
+            'bukti' => [
+                'label' => 'Bukti Pembayaran',
+                'rules' => 'uploaded[bukti]|is_image[bukti]|max_size[bukti,2048]'
+            ]
+        ];
+
+        if (!$this->validate($validationRule)) {
+            return redirect()->back()->with('error', $this->validator->getErrors());
+        }
+
+        $bukti = $this->request->getFile('bukti');
+        if ($bukti->isValid() && !$bukti->hasMoved()) {
+            $newName = $bukti->getRandomName();
+            $bukti->move('writable/uploads/', $newName);
+
+            // Simpan nama file bukti ke database
+            $this->transaction->update($id, [
+                'bukti_bayar' => $newName,
+                'status' => 1 // update status ke Sudah Dibayar
+            ]);
+
+            return redirect()->back()->with('success', 'Bukti pembayaran berhasil diupload.');
+        }
+        return redirect()->back()->with('error', 'Gagal upload bukti pembayaran.');
+    }
 }
