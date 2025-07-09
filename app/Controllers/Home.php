@@ -53,4 +53,10 @@ class Home extends BaseController
 
         return view('v_profile', $data);
     }
+
+    public function penjualan()
+    {
+        $data['transactions'] = $this->transaction->findAll();
+        return view('v_penjualan', $data);
+    }
 }

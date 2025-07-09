@@ -185,8 +185,7 @@ class TransaksiController extends BaseController
             return redirect()->back()->with('error', 'Gagal memperbarui status transaksi.'); 
         } 
     }
-
-        public function uploadBukti($id)
+    public function uploadBukti($id)
     {
         $validationRule = [
             'bukti' => [
