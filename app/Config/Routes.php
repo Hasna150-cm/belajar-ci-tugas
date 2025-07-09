@@ -42,5 +42,8 @@ $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
 $routes->post('transaksi/uploadBukti/(:num)', 'TransaksiController::uploadBukti/$1', ['filter' => 'auth']);
+$routes->get('laporan/pendapatan', 'LaporanController::pendapatan', ['filter' => 'auth']);
+$routes->get('laporan/exportExcel', 'LaporanController::exportExcel', ['filter' => 'auth']);
+$routes->get('laporan/exportPDF', 'LaporanController::exportPDF', ['filter' => 'auth']);
 
 $routes->resource('api', ['controller' => 'apiController']);

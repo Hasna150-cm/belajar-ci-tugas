@@ -36,11 +36,20 @@
         </li><!-- End Profile Nav -->
         
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string()) == 'penjualan' ? "" :
-            "collapsed"?>" href="penjualan">
+            <a class="nav-link <?php echo (uri_string()) == 'penjualan' ? '' : 'collapsed' ?>" href="penjualan">
                 <i class="bi bi-card-list"></i>
                 <span>Penjualan</span>
             </a>
+        </li><!-- End Penjualan Nav -->
+
+        <?php if (session()->get('role') == 'admin') : ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo (uri_string() == 'laporan/pendapatan') ? '' : 'collapsed' ?>" href="laporan/pendapatan">
+                <i class="bi bi-bar-chart"></i>
+                <span>Laporan Pendapatan</span>
+            </a>
+        </li><!-- End Laporan Pendapatan Nav -->
+        <?php endif; ?>
     </ul>
 
 </aside><!-- End Sidebar-->
