@@ -29,7 +29,7 @@
         }
         ?>
         <li class="nav-item">
-            <a class="nav-link <?php echo (uri_string() == 'profile') ? "" : "collapsed" ?>" href="profile">
+            <a class="nav-link <?php echo (uri_string() == 'profile') ? '' : 'collapsed' ?>" href="/profile">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>

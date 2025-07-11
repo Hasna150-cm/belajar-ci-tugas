@@ -103,7 +103,20 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                                         endforeach; 
                                     }
                                     ?>
-                                    Ongkir <?= number_to_currency($item['ongkir'], 'IDR') ?>
+                                    <div><b>Total Bayar:</b> <?= number_to_currency($item['total_harga'], 'IDR') ?></div>
+                                    <div>Ongkir <?= number_to_currency($item['ongkir'], 'IDR') ?></div>
+                                    <div><b>Alamat:</b> <?= esc($item['alamat']) ?></div>
+                                    <div><b>Status:</b> <?= [0=>'Menunggu Pembayaran',1=>'Sudah Dibayar',2=>'Sedang Dikirim',3=>'Sudah Selesai',4=>'Dibatalkan'][$item['status']] ?? '-' ?></div>
+                                    <div><b>Bukti Pembayaran:</b><br>
+                                        <?php if (!empty($item['bukti_bayar'])): ?>
+                                            <img src="<?= base_url('writable/uploads/' . $item['bukti_bayar']) ?>" width="150px" alt="Bukti Bayar">
+                                        <?php else: ?>
+                                            <span class="text-danger">Belum ada bukti pembayaran</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>
